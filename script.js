@@ -11,7 +11,7 @@ window.onload = function()
 	
 	function showTMP()
 	{
- 		axios.get(`https://testsshpractice.vercel.app/name=5`)
+ 		axios.get(`https://testsshpractice.vercel.app/api/formd?name=5`)
  		.then(function(res)
  		{
  			//result.innerHTML = `${JSON.stringify(res)}`;
