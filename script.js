@@ -8,10 +8,7 @@ window.onload = function()
 	const userId = createAndSaveUserIdCookie();
 	
 	function getFiles()
-	{
-		const emailValue = document.getElementById("email").value;
-		const taskIDValue = document.getElementById("taskID").value;
-		
+	{		
 		const dothis = 5;
 		
 		let valueTaskID = '';
@@ -23,7 +20,8 @@ window.onload = function()
 		.get(`https://testsshpractice.vercel.app/name=${dothis}&valueTaskID=${valueTaskID}&valueEmail=${valueEmail}&valueChains=${valueChains}&valueRCSB=${valueRCSB}&userId=${userId}`)
 		.then(function(res)
 		{
-			result.innerHTML = `${JSON.stringify(res)}`;
+			//result.innerHTML = `${JSON.stringify(res)}`;
+			result.innerHTML = 'hwtrw';
 		})
 		.catch(function(err)
 		{

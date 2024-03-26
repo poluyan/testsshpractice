@@ -119,8 +119,8 @@ module.exports = async (req, res) =>
 	else if(name == 5) {
 		let arrrayfiles = fs.readdirSync("/tmp", {withFileTypes: true}).filter(item => !item.isDirectory()).map(item => item.name);
 
-		res.writeHead(200, {"content-type" : "text/plain"});
-		res.write(" READING FILES IN DIRECTORY : ");
+		//res.writeHead(200, {"content-type" : "text/plain"});
+		//res.write(" READING FILES IN DIRECTORY : ");
 		res.write(String(arrrayfiles));
 		res.end();
 	}
