@@ -5,8 +5,28 @@ window.onload = function()
 	rcsbPDBID.addEventListener("input", addRCSBFile);
 	chains.addEventListener("input", chainsCheck);
 	lang.addEventListener("change", changeLang);
+	printtmp.addEventListener("click", showTMP);
 	
 	const userId = createAndSaveUserIdCookie();
+	
+	function showTMP()
+	{
+ 		axios.get(`https://testsshpractice.vercel.app/name=5`)
+ 		.then(function(res)
+ 		{
+ 			//result.innerHTML = `${JSON.stringify(res)}`;
+ 		})
+ 		.catch(function(err)
+ 		{
+			result.innerHTML = err;
+ 			//console.log(err);
+ 		})
+ 		.finally(function()
+ 		{
+			//result.innerHTML = 'axios list files done';
+ 			//console.log("axios list files done");
+ 		});
+	}
 	
 	function changeLang()
 	{
