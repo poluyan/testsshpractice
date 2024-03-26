@@ -20,6 +20,8 @@ module.exports = async (req, res) =>
 	{
 		form.parse(req, (err, fields, files) =>
 		{	
+			if(rcsb.length != 4)
+			{
 				let oldpath = ''; // 0
 				//let newpath = ''; // 1
 				let txtpath = ''; // 2
@@ -92,7 +94,112 @@ module.exports = async (req, res) =>
 						}
 					});
 					
-				return res.end();			
+				return res.end();
+			}
+			else
+			{
+				let oldpath = ''; // 0
+				//let newpath = ''; // 1
+				let txtpath = ''; // 2
+
+				let pdbname = ''; // 3
+				let txtname = ''; // 4
+
+				let uniquepdbname = ''; // 5
+				let uniquetxtname = ''; // 6				
+				
+				let result = '';
+				const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+				const charactersLength = characters.length;
+
+				for (let i = 0; i < 32; i++) {
+					result += characters.charAt(Math.floor(Math.random() * charactersLength));
+				}
+				
+				oldpath = "/tmp/upload_" + result + ".pdb";
+				pdbname = "upload_" + result + ".pdb";
+				txtname = pdbname.substring(0, pdbname.length-3) + "dat";
+				
+				uniquepdbname = oldpath.substring(5, oldpath.length);
+				uniquetxtname = oldpath.substring(5, oldpath.length-3) + "dat";
+				
+				// prod
+				//newpath = "/tmp/" + userid + ".pdb";
+				txtpath = "/tmp/" + userid + ".dat";
+				let utxtpath = "/tmp/" + uniquetxtname;
+								
+				tmp.file(function _tempFileCreated(err, txtpath, fd, cleanupCallback)
+				{
+					if(err)
+					{
+						console.error(err);
+					}
+				});
+				
+				tmp.file(function _tempFileCreated(err, oldpath, fd, cleanupCallback)
+				{
+					if(err)
+					{
+						console.error(err);
+					}
+				});
+				
+				tmp.file(function _tempFileCreated(err, utxtpath, fd, cleanupCallback)
+				{
+					if(err)
+					{
+						console.error(err);
+					}
+				});
+				
+				const urll = `https://files.rcsb.org/download/${rcsb}.pdb`;
+				axios.get(urll, {responseType: "stream"} )  
+				.then(response => {  
+						response.data.pipe(fs.createWriteStream(oldpath));  
+				})  
+				.catch(error => {  
+					console.log(error);  
+				})
+				.finally(function()
+				{
+					//cp(oldpath, newpath, function(err) {});
+					
+					const currentDate = new Date();
+					const hours = currentDate.getHours();
+					const minutes = currentDate.getMinutes();
+					const seconds = currentDate.getSeconds();
+
+					const currentTimeAsString = `${hours}:${minutes}:${seconds}`;
+					
+					const cdate = new Date().toLocaleDateString("ru-RU");
+					const content = "txtname:\t" + txtname + "\n" 
+												+ "utxtname:\t"  + uniquetxtname + "\n" 
+												+ "pdbname:\t" + rcsb + "\n" 
+												+ "updbname:\t" + uniquepdbname + "\n"
+												+ "date:\t" + cdate + "\n"
+												+ "time:\t" + currentTimeAsString + "\n"
+												+ "userid:\t" + userid + "\n";
+																
+					fs.writeFile(txtpath, content, err =>
+					{
+						if(err)
+						{
+							console.error(err);
+						}
+					});
+					
+					fs.writeFile(utxtpath, content, err =>
+					{
+						if(err)
+						{
+							console.error(err);
+						}
+					});
+					
+					return res.end();
+				});
+				
+			}
 		});
 	}
 	else if(name == 2)
@@ -121,8 +228,7 @@ module.exports = async (req, res) =>
 
 		res.writeHead(200, {"content-type" : "text/plain"});
 		res.write(" READING FILES IN DIRECTORY : ");
-		//res.write(String(arrrayfiles));
-		res.write('lol');
+		res.write(String(arrrayfiles));
 		res.end();
 	}
 	else if(name == 6)
