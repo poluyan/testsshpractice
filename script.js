@@ -16,8 +16,9 @@ window.onload = function()
 		let valueChains = '';
 		let valueRCSB = '';
 
+		//.get(`https://testsshpractice.vercel.app/name=${dothis}&valueTaskID=${valueTaskID}&valueEmail=${valueEmail}&valueChains=${valueChains}&valueRCSB=${valueRCSB}&userId=${userId}`)
 		axios
-		.get(`https://testsshpractice.vercel.app/name=${dothis}&valueTaskID=${valueTaskID}&valueEmail=${valueEmail}&valueChains=${valueChains}&valueRCSB=${valueRCSB}&userId=${userId}`)
+		.get(`https://testsshpractice.vercel.app/name=5`)
 		.then(function(res)
 		{
 			//result.innerHTML = `${JSON.stringify(res)}`;
@@ -25,10 +26,12 @@ window.onload = function()
 		})
 		.catch(function(err)
 		{
+			result.innerHTML = err;
 			console.log(err);
 		})
 		.finally(function()
 		{
+			result.innerHTML = 'axios list files done';
 			console.log("axios list files done");
 		});
 	}
