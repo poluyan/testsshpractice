@@ -1,17 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пример HTML страницы с JavaScript</title>
-</head>
-<body>
-    <h1>Hi JavaScript</h1>
+<html>
+	<head>
+		<meta charset="utf-8">	
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <p>Нажмите кнопку, чтобы увидеть пример работы JavaScript:</p>
+		<style>			
 
-    <button id="myButton">Нажми меня</button>
+			#notification {
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				padding: 10px;
+				background-color: #E50000;
+				border: 1px solid #e3e3e3;
+				border-radius: 4px;
+				display: none;
+			}
+			
+	</style>	
+	</head>
 
-    <script src="script.js"></script>
-</body>
+	<body>	
+		<br>
+		
+		<div class="content">
+			<form id="foxm" onsubmit="return false;">
+				<fieldset>
+					<div>
+					<p style="margin-left: 30px;">
+					<input type="file" accept=".pdb" name="file" id="inputfile">
+					</p>
+					</div>
+
+					
+					<div id="showpdbcontainer">
+						<div><input name="chains" type="text" placeholder="A:B" maxlength="10" size="30" id="chains" class="search-field-pdb"/></div>
+					</div>
+
+				</fieldset>
+				
+				<div id="myViewer" style="display: none;"></div>
+				
+				<br>
+				
+				<fieldset>
+					<input name="taskID" type="text" placeholder="тема электронного письма" maxlength="50" size="30" id="taskID" class="search-field"/><br>
+					<input name="email" type="text" oninput="emailCheck()" placeholder="example@email.com" maxlength="50" size="30" id="email" class="search-field"/>
+				</fieldset>
+				
+			</form>
+		</div>
+				
+		<table class="lasttable">
+			<tr>
+				<td>
+				<div class="button-section">
+					<button id="checkdirectory" class="custom-button rounded-button">Отправить</button>
+					<p style="margin-left: 30px;">
+					<span id="text-content" style="display: none;">Задача отправлена для вычислений!</span></p>
+				</div>				
+				</td>
+			</tr>
+		</table>
+		
+					
+		<div id="notification"></div>					
+				
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="script.js"></script>
+		
+		</body>
+		
+		
 </html>
