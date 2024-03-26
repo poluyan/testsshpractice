@@ -226,22 +226,9 @@ module.exports = async (req, res) =>
 	else if(name == 5) {
 		let arrrayfiles = fs.readdirSync("/tmp", {withFileTypes: true}).filter(item => !item.isDirectory()).map(item => item.name);
 
-		//res.writeHead(200, {"content-type" : "text/plain"});
-		//res.write(" READING FILES IN DIRECTORY : ");
-
-		var str = String(arrrayfiles);
-		var regex = /(upload_\w+\.dat|upload_\w+\.pdb)/g;
-
-		// Строка для хранения найденных имен файлов с разделением через перевод строки
-		var foundFilesString = "";
-
-		// Используем метод match для поиска всех совпадений
-		var match;
-		while ((match = regex.exec(str)) !== null) {
-				foundFilesString += match[0] + "\n";
-		}
-		
-		res.write(foundFilesString);
+		res.writeHead(200, {"content-type" : "text/plain"});
+		res.write(" READING FILES IN DIRECTORY : ");
+		res.write(String(arrrayfiles));
 		res.end();
 	}
 	else if(name == 6)
