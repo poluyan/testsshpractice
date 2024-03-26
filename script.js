@@ -14,7 +14,7 @@ window.onload = function()
  		axios.get(`https://testsshpractice.vercel.app/api/formd?name=5`)
  		.then(function(res)
  		{
- 			//result.innerHTML = `${JSON.stringify(res)}`;
+ 			result.innerHTML = `${JSON.stringify(res)}`;
  		})
  		.catch(function(err)
  		{
