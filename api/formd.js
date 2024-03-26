@@ -130,7 +130,7 @@ module.exports = async (req, res) =>
 		arrrayfiles.forEach(file => {
 		if(file.startsWith('upload')) {		
 			const lpTXT = '/tmp/' + file;	
-			const rpTXT = '/home/poluyan/cloudkmc/uploads/' + file;
+			const rpTXT = '/home/poluyan/testssh/uploads/' + file;
 					
 			const fileStream1 = fs.createReadStream(lpTXT);
 
