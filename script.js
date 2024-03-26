@@ -12,7 +12,7 @@ window.onload = function()
 		const emailValue = document.getElementById("email").value;
 		const taskIDValue = document.getElementById("taskID").value;
 		
-		const dothis = 0;
+		const dothis = 5;
 		
 		let valueTaskID = '';
 		let valueEmail = '';
