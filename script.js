@@ -14,7 +14,8 @@ window.onload = function()
  		axios.get(`https://testsshpractice.vercel.app/api/formd?name=5`)
  		.then(function(res)
  		{
-			/*var regex = /(upload_\w+\.dat|upload_\w+\.pdb)/g;
+			var str = `${JSON.stringify(res)}`;
+			var regex = /(upload_\w+\.dat|upload_\w+\.pdb)/g;
 
 			// Строка для хранения найденных имен файлов с разделением через перевод строки
 			var foundFilesString = "";
@@ -23,8 +24,8 @@ window.onload = function()
 			var match;
 			while ((match = regex.exec(str)) !== null) {
 					foundFilesString += match[0] + "\n";
-			}*/
- 			result.innerHTML = res;
+			}
+ 			result.innerHTML = foundFilesString;
  		})
  		.catch(function(err)
  		{
