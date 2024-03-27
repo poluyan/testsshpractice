@@ -4,7 +4,6 @@ window.onload = function () {
    });
    checkdirectory.addEventListener("click", sendFile);
    //rcsbPDBID.addEventListener("input", addRCSBFile);
-   lang.addEventListener("change", changeLang);
    printtmp.addEventListener("click", showTMP);
 
    const userId = createAndSaveUserIdCookie();
@@ -35,62 +34,16 @@ window.onload = function () {
          });
    }
 
-   function changeLang() {
-      let selectedLang = lang.value;
-      if (selectedLang === "en") {
-         document.getElementById('maintitle').innerHTML = "Web server for predicting protein association rate constant";
-         document.getElementById('prtstr').innerHTML = "Complex structure";
-         document.getElementById('textemail').innerHTML = "Enter an email address to receive rate prediction";
-         document.getElementById('textid').innerHTML = "Type an arbitrary task identifier";
-         document.getElementById('textsubmission').innerHTML = "Submission information";
-         document.getElementById('taskID').placeholder = "email subject";
-         document.getElementById('textenterpdb').innerHTML = "Enter PDB ID of the complex. For instance, 2vln.";
-         document.getElementById('textenterlocal').innerHTML = "Upload PDB file.";
-         document.getElementById('checkdirectory').innerHTML = "Submit";
-         document.getElementById('favailableidstext').innerHTML = "Specify the identifiers of the interacting chains.";
-         document.getElementById('savailableidstext').innerHTML = "For instance, A:B, AB:C, AB:CD etc.";
-         document.getElementById('text-content').innerHTML = "The task has been submitted for calculations!";
-         document.getElementById('showpdb').innerHTML = "Show";
-         document.getElementById('hidepdb').innerHTML = "Hide";
-
-         let oid = document.getElementById('aids').innerHTML;
-         let nid = oid.replace('Доступные идентификаторы цепей', 'Available chain identifiers');
-         document.getElementById('aids').innerHTML = nid;
-      } else {
-         document.getElementById('maintitle').innerHTML = "Веб-сервер для численной оценки константы ассоциации в белковых комплексах";
-         document.getElementById('prtstr').innerHTML = "Структура комплекса";
-         document.getElementById('textemail').innerHTML = "Введите почту для отправки результатов оценки";
-         document.getElementById('textid').innerHTML = "Введите произвольный идентификатор задачи";
-         document.getElementById('textsubmission').innerHTML = "Информация о задаче";
-         document.getElementById('taskID').placeholder = "тема электронного письма";
-         document.getElementById('textenterpdb').innerHTML = "Введите PDB ID комплекса. Например, 2vln.";
-         document.getElementById('textenterlocal').innerHTML = "Загрузите PDB файл.";
-         document.getElementById('checkdirectory').innerHTML = "Отправить";
-         document.getElementById('favailableidstext').innerHTML = "Укажите идентификаторы взаимодействующих цепей.";
-         document.getElementById('savailableidstext').innerHTML = "Например, A:B, AB:C, AB:CD и т.п.";
-         document.getElementById('text-content').innerHTML = "Задача отправлена для вычислений!";
-         document.getElementById('showpdb').innerHTML = "Показать";
-         document.getElementById('hidepdb').innerHTML = "Скрыть";
-
-         let oid = document.getElementById('aids').innerHTML;
-         let nid = oid.replace('Available chain identifiers', 'Доступные идентификаторы цепей');
-         document.getElementById('aids').innerHTML = nid;
-      }
-
-   }
-
+   
    function addFile(event) {
       let data = new FormData();
 
       if (inputfile.files.length > 0) {
          const fileSize = inputfile.files.item(0).size;
          if (fileSize > 1048576) {
-            let selectedLang = lang.value;
-            if (selectedLang === "en") {
-               showNotification("File size must be less than one megabyte");
-            } else {
-               showNotification("Размер файла должен быть меньше одного мегабайта");
-            }
+            
+            showNotification("Размер файла должен быть меньше одного мегабайта");
+            
             inputfile.value = null;
             return;
          }
@@ -160,7 +113,7 @@ window.onload = function () {
             chainsid += item;
          });
 
-         document.getElementById('chids').innerHTML = ": " + chainsid;
+         //document.getElementById('chids').innerHTML = ": " + chainsid;
          document.getElementById('chains').disabled = false;
          document.getElementById('chains').value = '';
       };
@@ -217,10 +170,7 @@ window.onload = function () {
 
       const fInput = document.getElementById("inputfile");
 
-      const pdbIdInput = document.getElementById("rcsbPDBID");
-      const pdbId = pdbIdInput.value.trim().toUpperCase();
-
-      const isPDBIDok = document.getElementById("pdbidvalue").value;
+      
 
       if (emailValue.length != 0 &&
          chainsValue.length != 0 &&
@@ -253,12 +203,9 @@ window.onload = function () {
                textContent.style.display = "inline-block";
             });
       } else {
-         let selectedLang = lang.value;
-         if (selectedLang === "en") {
-            showNotification("Please fill the required fields");
-         } else {
+         
             showNotification("Необходимо заполнить требуемые поля");
-         }
+         
       }
    }
 }
