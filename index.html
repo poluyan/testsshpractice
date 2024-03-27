@@ -1,69 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">	
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>Веб-сервер KMC</title>
-
-		
-		<style>			
-						
-			#notification {
-				position: fixed;
-				right: 10px;
-				bottom: 10px;
-				padding: 10px;
-				background-color: #E50000;
-				border: 1px solid #e3e3e3;
-				border-radius: 4px;
-				display: none;
-			}
-						
-	</style>	
-	</head>
-
-	<body>
-
-		<br>
-		
-		<div class="content">
-			<form id="foxm" onsubmit="return false;">
-      <input type="file" accept=".pdb" name="file" id="inputfile">
-					
-      <br>
-      
-      <input name="chains" type="text" placeholder="A:B" maxlength="10" size="30" id="chains"/>
-			
-			<br>
-			
-			<input name="taskID" type="text" placeholder="тема электронного письма" maxlength="50" size="30" id="taskID"/><br>
-		
-		  <input name="email" type="text" oninput="emailCheck()" placeholder="example@email.com" maxlength="50" size="30" id="email"/>
-		  
-		  <input type="text" id="downloadlink" style="display: none;" class="search-field"/><br>
-				
-			</form>
-		</div>
-				
-		<button id="checkdirectory">Отправить</button>
-					
-		<span id="text-content" style="display: none;">Задача отправлена для вычислений!</span></p>
-		
-		
-		<br>	
-		
-		<button id="printtmp">Покажи TMP</button>
-		<div id="result"></div>					
-		
-		<br>	
-					
-		<div id="notification"></div>	
-		
-						
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script src="script.js"></script>
-		
-		</body>
-		
-		
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Веб-сервер KMC</title>
+    <style>
+      #notification {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px;
+        background-color: #E50000;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+      <form id="foxm" onsubmit="return false;">
+        <input type="file" accept=".pdb" name="file" id="inputfile">
+        <br>
+        <input name="chains" type="text" placeholder="A:B" maxlength="10" size="30" id="chains" />
+        <br>
+        <input name="taskID" type="text" placeholder="тема электронного письма" maxlength="50" size="30" id="taskID" />
+        <br>
+        <input name="email" type="text" oninput="emailCheck()" placeholder="example@email.com" maxlength="50" size="30" id="email" />
+        <input type="text" id="downloadlink" style="display: none;"/>
+        <br>
+      </form>
+    <button id="checkdirectory">Отправить</button>
+    <span id="text-content" style="display: none;">Задача отправлена для вычислений!</span>
+    </p>
+    <button id="printuserid">Покажи UserID</button>
+    <br>
+    <button id="printtmp">Покажи TMP</button>
+    <div id="result"></div>
+    <br>
+    <div id="notification"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
