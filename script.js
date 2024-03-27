@@ -17,13 +17,14 @@ window.onload = function() {
         var regex = /(upload_\w+\.dat|upload_\w+\.pdb)/g;
 
         // Строка для хранения найденных имен файлов с разделением через перевод строки
-        var foundFilesString = "";
+        var foundFilesString = "<pre>";
 
         // Используем метод match для поиска всех совпадений
         var match;
         while ((match = regex.exec(str)) !== null) {
           foundFilesString += match[0] + "\n";
         }
+        foundFilesString += "</pre>";
         result.innerHTML = foundFilesString;
       })
       .catch(function(err) {
