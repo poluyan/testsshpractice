@@ -262,9 +262,7 @@
 					<legend><span class="red-asterisk">*</span><div style="display: inline" id="prtstr">Структура белкового комплекса</div></legend>
 					
 					<div>
-					<input type="radio" class="radio-button" id="rcsbPDB" name="drone" onchange="handleRadioChange()">
-					<label for="rcsbPDB" id="textenterpdb">Введите PDB ID комплекса. Например, 2vln.</label>
-					
+										
 					<br>
 					<p style="margin-left: 30px;">
 					<input name="rcsbPDBID" disabled="true" type="text" placeholder="2VLN" maxlength="4" size="3" id="rcsbPDBID" class="search-field-pdb"/><p id="chainsRCSB"></p>
@@ -295,8 +293,6 @@
 					
 					<div id="showpdbcontainer">
 						<div><input name="chains" type="text" placeholder="A:B" maxlength="10" size="30" id="chains" class="search-field-pdb"/></div>
-						<div><button id="showpdb" disabled="true" class="showhidepdb-button" onclick="loadStructure(event)">Показать</button></div>
-						<div><button id="hidepdb" disabled="true" class="showhidepdb-button" onclick="hideStructure(event)">Скрыть</button></div>
 					</div>
 
 				</fieldset>
@@ -316,50 +312,33 @@
 					<p style="margin-left: 30px;">
 					<input name="email" type="text" oninput="emailCheck()" placeholder="example@email.com" maxlength="50" size="30" id="email" class="search-field"/>
 				</fieldset>
-				
-				<!--<br>
-				
-				<fieldset>
-					<legend>Дополнительные параметры</legend>
-					<br>
-					<br>
-				</fieldset>-->
-				
+								
 				<input type="text" id="downloadlink" style="display: none;" class="search-field"/><br>
 				<input type="hidden" id="pdbidvalue" style="display: none;" value="false"/><br>
 				
 			</form>
 		</div>
 				
-		<table class="lasttable">
-			<tr>
-				<td>
-				<div class="button-section">
-					<button id="checkdirectory" class="custom-button rounded-button">Отправить</button>
-					<p style="margin-left: 30px;">
-					<span id="text-content" style="display: none;">Задача отправлена для вычислений!</span></p>
-				</div>				
-				</td>
-					<td>
-							<!--<div class="icon-container">
-								<a href="https://t.me/sergpsv"><svg class="svg-icon"><use xlink:href="minima-social-icons.svg#telegram"></use></svg></a><a href="mailto:poluyan%40uni-dubna.ru"><svg class="svg-icon"><use xlink:href="minima-social-icons.svg#email"></use></svg></a><a href="https://github.com/poluyan"><svg class="svg-icon"><use xlink:href="minima-social-icons.svg#github"></use></svg></a>
-							</div>-->
-							<div class="icon-container">
-								<a href="mailto:poluyan%40uni-dubna.ru"><svg class="svg-icon"><use xlink:href="minima-social-icons.svg#email"></use></svg></a>
-							</div>
-					</td>
-			</tr>
-		</table>
-		
+					<button id="checkdirectory">Отправить</button>
 					
-		<div id="notification"></div>		
+					<span id="text-content" style="display: none;">Задача отправлена для вычислений!</span></p>
+
+		
+		
+		<br>	
 		
 		<button id="printtmp">Покажи TMP</button>
 		<div id="result"></div>					
-				
+		
+		<br>	
+					
+		<div id="notification"></div>	
+		
+						
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="script.js"></script>
 		
 		</body>
+		
 		
 </html>
