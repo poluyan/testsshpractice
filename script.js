@@ -1,9 +1,6 @@
 window.onload = function () {
-   inputfile.addEventListener("change", (event) => {
-      addFile(event)
-   });
+   inputfile.addEventListener("change", (event) => {addFile(event)});
    checkdirectory.addEventListener("click", sendFile);
-   //rcsbPDBID.addEventListener("input", addRCSBFile);
    printtmp.addEventListener("click", showTMP);
 
    const userId = createAndSaveUserIdCookie();
@@ -76,22 +73,7 @@ window.onload = function () {
          }
       }
 
-
       const reader = new FileReader();
-      //const asymIdSet = new Set();
-      //const lines = reader.readAsText(filem);
-      /*for (const line of lines) {
-        if (line.startsWith('ATOM')) {
-          const asymId = line.slice(21, 22).trim();
-          if (asymId) {
-            asymIdSet.add(asymId);
-          }
-        }
-      }
-      let chainsid = '';
-      Array.from(asymIdSet).forEach(item => {				
-					chainsid += item;
-				});*/
       // Добавляем обработчик события onload для FileReader
       reader.onload = function (event) {
          const fileContent = event.target.result;
@@ -113,7 +95,6 @@ window.onload = function () {
             chainsid += item;
          });
 
-         //document.getElementById('chids').innerHTML = ": " + chainsid;
          document.getElementById('chains').disabled = false;
          document.getElementById('chains').value = '';
       };
@@ -130,47 +111,12 @@ window.onload = function () {
          });
    }
 
-   async function getChainsID(pdbId) {
-      const url = `https://files.rcsb.org/download/${pdbId}.pdb`;
-
-      return fetch(url)
-         .then(response => {
-            if (!response.ok) {
-               throw new Error(`Ошибка при загрузке PDB файла: ${response.status}`);
-            }
-            return response.text();
-         })
-         .then(pdbData => {
-            const asymIdSet = new Set();
-            const lines = pdbData.split('\n');
-            for (const line of lines) {
-               if (line.startsWith('ATOM')) {
-                  const asymId = line.slice(21, 22).trim();
-                  if (asymId) {
-                     asymIdSet.add(asymId);
-                  }
-               }
-            }
-            let chainsid = '';
-            Array.from(asymIdSet).sort().forEach(item => {
-               chainsid += item;
-            });
-
-            return chainsid;
-         });
-   }
 
    async function sendFile() {
       const emailValue = document.getElementById("email").value;
       const chainsValue = document.getElementById("chains").value;
       const taskIDValue = document.getElementById("taskID").value;
-
-      //const rcsbPdbInput = document.getElementById("rcsbPDB");
-      //const localPdbInput = document.getElementById("localPDB");
-
       const fInput = document.getElementById("inputfile");
-
-      
 
       if (emailValue.length != 0 &&
          chainsValue.length != 0 &&
@@ -205,7 +151,7 @@ window.onload = function () {
       } else {
          
             showNotification("Необходимо заполнить требуемые поля");
-         
+
       }
    }
 }
@@ -223,19 +169,8 @@ window.onbeforeunload = function () {
    document.getElementById("email").value = "";
    document.getElementById("chains").value = "";
    document.getElementById("taskID").value = "";
-   //document.getElementById("rcsbPDBID").value = "";
-   //document.getElementById("rcsbPDBID").disabled = true;
-   //document.getElementById("rcsbPDB").checked = false;
-  // document.getElementById("localPDB").checked = true;
    document.getElementById("inputfile").value = null;
-
-   //document.getElementById("showpdb").disabled = true;
-   //document.getElementById("hidepdb").disabled = true;
-
-   document.getElementById("lang").value = "ru";
 };
-
-
 
 // userid
 // Функция для получения значения куки по его имени
@@ -268,17 +203,4 @@ function createAndSaveUserIdCookie() {
    return userId;
 }
 
-// Функция для вызова serverless функции
-function callServerlessFunction(userId) {
-   // Ваш код для вызова serverless функции, используя userId как параметр
-   // Например, можно использовать fetch API для отправки запроса на сервер
-   fetch('/your-serverless-function-url?userId=' + userId)
-      .then(response => response.json())
-      .then(data => {
-         // Обработка ответа от serverless функции
-         console.log(data);
-      })
-      .catch(error => {
-         console.error('Ошибка при вызове serverless функции:', error);
-      });
-}
+
